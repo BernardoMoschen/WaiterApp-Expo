@@ -7,13 +7,16 @@ import {
     MenuContainer,
 } from "./styles";
 import { Header } from "../components/Header/Header";
+import { Categories } from "../components/Categories/Categories";
 
 export const Main = () => {
     return (
         <>
             <Container>
                 <Header />
-                <CategoriesContainer />
+                <CategoriesContainer>
+                    <Categories />
+                </CategoriesContainer>
                 <MenuContainer />
             </Container>
             <Footer />
