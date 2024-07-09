@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Button, Categories, Header } from "../components";
+import { Text, Button, Categories, Header, Menu } from "../components";
 import {
     CategoriesContainer,
     Container,
@@ -16,7 +16,9 @@ export const Main = () => {
                 <CategoriesContainer>
                     <Categories />
                 </CategoriesContainer>
-                <MenuContainer />
+                <MenuContainer>
+                    <Menu />
+                </MenuContainer>
             </Container>
             <Footer>
                 <FooterContainer>
