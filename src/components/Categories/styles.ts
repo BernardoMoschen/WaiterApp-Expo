@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { isAndroid } from "../../utils/isAndroid";
 
-export const Category = styled.View`
+export const Category = styled.Pressable`
     margin-left: 24px;
     align-items: center;
 `;
