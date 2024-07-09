@@ -1,13 +1,12 @@
 import React from "react";
-import { Text } from "../components/Text";
+import { Text, Button, Categories, Header } from "../components";
 import {
     CategoriesContainer,
     Container,
     Footer,
+    FooterContainer,
     MenuContainer,
 } from "./styles";
-import { Header } from "../components/Header/Header";
-import { Categories } from "../components/Categories/Categories";
 
 export const Main = () => {
     return (
@@ -19,7 +18,13 @@ export const Main = () => {
                 </CategoriesContainer>
                 <MenuContainer />
             </Container>
-            <Footer />
+            <Footer>
+                <FooterContainer>
+                    <Button onPress={() => alert("NovoPedido")}>
+                        Novo Pedido
+                    </Button>
+                </FooterContainer>
+            </Footer>
         </>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Category, Icon } from "./styles";
 import { categories } from "../../mocks/categories";
-import { Text } from "../Text";
+import { Text } from "../Text/Text";
 import { FlatList } from "react-native";
 
 export const Categories = () => {
