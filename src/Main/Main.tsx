@@ -11,6 +11,12 @@ import { TableModal } from "../components/TableModal/TableModal";
 
 export const Main = () => {
     const [isTableModalVisible, setIsTableModalVisible] = useState(false);
+    const [tableNumber, setTableNumber] = useState("");
+
+    const handleSaveTable = () => {
+        alert(`Table: ${tableNumber}`);
+        setIsTableModalVisible(false);
+    };
 
     return (
         <>
@@ -32,6 +38,9 @@ export const Main = () => {
             </Footer>
             <TableModal
                 visible={isTableModalVisible}
+                onChange={setTableNumber}
+                onSave={handleSaveTable}
+                submitDisabled={!tableNumber}
                 onClose={() => setIsTableModalVisible(false)}
             />
         </>
