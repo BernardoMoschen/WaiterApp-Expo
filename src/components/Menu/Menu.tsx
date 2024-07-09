@@ -41,7 +41,7 @@ export const Menu = () => {
                             {formatCurrency(product.price)}
                         </Text>
                     </ProductDetails>
-                    <AddToCartButton>
+                    <AddToCartButton onPress={() => alert("AddToCart")}>
                         <PlusCircle />
                     </AddToCartButton>
                 </Product>
