@@ -36,7 +36,7 @@ export const Menu = () => {
                 renderItem={({ item: product }) => (
                     <ProductContainer onPress={() => handleOpenModal(product)}>
                         <Image
-                            source={require("./mockImage.png")}
+                            source={require("../../mocks/mockImage.png")}
                             // source={{
                             //     uri: `http://localhost:3001/upload/${product.imagePath}`,
                             // }}
