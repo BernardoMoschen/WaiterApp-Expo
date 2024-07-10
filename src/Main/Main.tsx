@@ -10,18 +10,25 @@ import {
 import { TableModal } from "../components/TableModal/TableModal";
 
 export const Main = () => {
-    const [isTableModalVisible, setIsTableModalVisible] = useState(false);
     const [tableNumber, setTableNumber] = useState("");
+    const [isTableModalVisible, setIsTableModalVisible] = useState(false);
 
-    const handleSaveTable = () => {
-        alert(`Table: ${tableNumber}`);
+    const handleCancelOrder = () => {
+        setTableNumber("");
+    };
+
+    const handleSaveTable = (selectedTable: string) => {
+        setTableNumber(selectedTable);
         setIsTableModalVisible(false);
     };
 
     return (
         <>
             <Container>
-                <Header />
+                <Header
+                    selectedTable={tableNumber}
+                    onCancelOrder={handleCancelOrder}
+                />
                 <CategoriesContainer>
                     <Categories />
                 </CategoriesContainer>
@@ -38,9 +45,7 @@ export const Main = () => {
             </Footer>
             <TableModal
                 visible={isTableModalVisible}
-                onChange={setTableNumber}
                 onSave={handleSaveTable}
-                submitDisabled={!tableNumber}
                 onClose={() => setIsTableModalVisible(false)}
             />
         </>

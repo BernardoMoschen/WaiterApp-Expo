@@ -8,21 +8,21 @@ import { isAndroid } from "../../utils/isAndroid";
 
 type Props = {
     visible: boolean;
-    onChange: (table: string) => void;
-    onSave: () => void;
+    onSave: (table: string) => void;
     onClose: () => void;
-    submitDisabled: boolean;
 };
 
-export const TableModal: FC<Props> = ({
-    visible,
-    onChange,
-    onSave,
-    onClose,
-    submitDisabled,
-}) => {
+export const TableModal: FC<Props> = ({ visible, onSave, onClose }) => {
+    const [selectTable, setSelectTable] = useState("");
+
     const handleClose = () => {
-        onChange("");
+        onSave("");
+        onClose();
+    };
+
+    const handleSave = () => {
+        setSelectTable("");
+        onSave(selectTable);
         onClose();
     };
 
@@ -41,9 +41,9 @@ export const TableModal: FC<Props> = ({
                             placeholder="Número da mesa"
                             placeholderTextColor="#666"
                             keyboardType="number-pad"
-                            onChangeText={onChange}
+                            onChangeText={setSelectTable}
                         />
-                        <Button disabled={submitDisabled} onPress={onSave}>
+                        <Button disabled={!selectTable} onPress={handleSave}>
                             Salvar
                         </Button>
                     </Form>
