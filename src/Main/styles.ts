@@ -1,4 +1,4 @@
-import { Platform, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 import styled from "styled-components/native";
 import { isAndroid } from "../utils/isAndroid";
 
