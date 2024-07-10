@@ -1,8 +1,15 @@
 import React, { FC } from "react";
 import { Text } from "../Text/Text";
-import { Modal } from "react-native";
+import { FlatList, Modal } from "react-native";
 import { Product } from "../../types/Product";
-import { CloseButton, Image } from "./styles";
+import {
+    CloseButton,
+    Header,
+    Image,
+    Ingredient,
+    IngredientsContainer,
+    ModalBody,
+} from "./styles";
 import { Close } from "../Icons/Close";
 
 type Props = {
@@ -31,8 +38,44 @@ export const ProductModal: FC<Props> = ({ visible, onClose, product }) => {
                     <Close />
                 </CloseButton>
             </Image>
-
-            <Text>ProductModal</Text>
+            <ModalBody>
+                <Header>
+                    <Text size={24} weight={600}>
+                        {product.name}
+                    </Text>
+                    <Text
+                        size={16}
+                        weight={400}
+                        color="#666"
+                        style={{ marginTop: 8 }}
+                    >
+                        {product.description}
+                    </Text>
+                </Header>
+                <IngredientsContainer>
+                    <Text weight={600} color="#666">
+                        Ingredients
+                    </Text>
+                    <FlatList
+                        data={product.ingredients}
+                        keyExtractor={(ingredient) => ingredient._id}
+                        showsVerticalScrollIndicator={false}
+                        style={{ marginTop: 16 }}
+                        renderItem={({ item: ingredient }) => (
+                            <Ingredient>
+                                <Text>{ingredient.icon}</Text>
+                                <Text
+                                    size={14}
+                                    color="#666"
+                                    style={{ marginLeft: 20 }}
+                                >
+                                    {ingredient.name}
+                                </Text>
+                            </Ingredient>
+                        )}
+                    />
+                </IngredientsContainer>
+            </ModalBody>
         </Modal>
     );
 };
