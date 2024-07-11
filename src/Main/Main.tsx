@@ -8,10 +8,23 @@ import {
     MenuContainer,
 } from "./styles";
 import { TableModal } from "../components/TableModal/TableModal";
+import { Cart } from "../components/Cart/Cart";
+import { CartItem } from "../types/CartItem";
+import { products } from "../mocks/products";
 
 export const Main = () => {
     const [tableNumber, setTableNumber] = useState("");
     const [isTableModalVisible, setIsTableModalVisible] = useState(false);
+    const [cartItems, setCartItems] = useState<CartItem[]>([
+        {
+            quantity: 2,
+            product: products.at(1),
+        },
+        {
+            quantity: 1,
+            product: products.at(0),
+        },
+    ]);
 
     const handleCancelOrder = () => {
         setTableNumber("");
@@ -38,9 +51,12 @@ export const Main = () => {
             </Container>
             <Footer>
                 <FooterContainer>
-                    <Button onPress={() => setIsTableModalVisible(true)}>
-                        Novo Pedido
-                    </Button>
+                    {!tableNumber && (
+                        <Button onPress={() => setIsTableModalVisible(true)}>
+                            Novo Pedido
+                        </Button>
+                    )}
+                    {tableNumber && <Cart cart={cartItems} />}
                 </FooterContainer>
             </Footer>
             <TableModal
