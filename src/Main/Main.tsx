@@ -11,19 +11,20 @@ import { TableModal } from "../components/TableModal/TableModal";
 import { Cart } from "../components/Cart/Cart";
 import { CartItem } from "../types/CartItem";
 import { products } from "../mocks/products";
+import { Product } from "../types/Product";
 
 export const Main = () => {
     const [tableNumber, setTableNumber] = useState("");
     const [isTableModalVisible, setIsTableModalVisible] = useState(false);
     const [cartItems, setCartItems] = useState<CartItem[]>([
-        {
-            quantity: 2,
-            product: products.at(1),
-        },
-        {
-            quantity: 1,
-            product: products.at(0),
-        },
+        // {
+        //     quantity: 2,
+        //     product: products.at(1),
+        // },
+        // {
+        //     quantity: 1,
+        //     product: products.at(0),
+        // },
     ]);
 
     const handleCancelOrder = () => {
@@ -33,6 +34,11 @@ export const Main = () => {
     const handleSaveTable = (selectedTable: string) => {
         setTableNumber(selectedTable);
         setIsTableModalVisible(false);
+    };
+
+    const handleAddToCart = (product: Product) => {
+        alert(`handleAddToCart`);
+        // setCartItems((cart) => [...cart, product]);
     };
 
     return (
@@ -46,7 +52,7 @@ export const Main = () => {
                     <Categories />
                 </CategoriesContainer>
                 <MenuContainer>
-                    <Menu />
+                    <Menu  />
                 </MenuContainer>
             </Container>
             <Footer>

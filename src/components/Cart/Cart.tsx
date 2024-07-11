@@ -22,56 +22,70 @@ type Props = {
 };
 
 export const Cart: FC<Props> = ({ cart }) => {
+    const isCartEmpty = cart.length <= 0;
     return (
         <>
-            <FlatList
-                data={cart}
-                keyExtractor={({ product }) => product._id}
-                showsVerticalScrollIndicator={false}
-                style={{ marginBottom: 20 }}
-                renderItem={({ item: cartItem }) => (
-                    <Item>
-                        <ItemContainer>
-                            <ItemImage
-                                source={require("../../mocks/mockImage.png")}
-                            />
-                            <ItemQuantity>
-                                <Text size={14} color="#666">
-                                    {cartItem.quantity}x
-                                </Text>
-                            </ItemQuantity>
-                            <ItemDetails>
-                                <Text size={14} weight="600">
-                                    {cartItem.product.name}
-                                </Text>
-                                <Text
-                                    size={14}
-                                    color="#666"
-                                    style={{ marginTop: 3 }}
-                                >
-                                    {formatCurrency(cartItem.product.price)}
-                                </Text>
-                            </ItemDetails>
-                        </ItemContainer>
-                        <Actions>
-                            <Pressable style={{ marginRight: 24 }}>
-                                <PlusCircle />
-                            </Pressable>
-                            <Pressable>
-                                <MinusCircle />
-                            </Pressable>
-                        </Actions>
-                    </Item>
-                )}
-            />
+            {!isCartEmpty && (
+                <FlatList
+                    data={cart}
+                    keyExtractor={({ product }) => product._id}
+                    showsVerticalScrollIndicator={false}
+                    style={{ marginBottom: 20, maxHeight: 150 }}
+                    renderItem={({ item: cartItem }) => (
+                        <Item>
+                            <ItemContainer>
+                                <ItemImage
+                                    source={require("../../mocks/mockImage.png")}
+                                />
+                                <ItemQuantity>
+                                    <Text size={14} color="#666">
+                                        {cartItem.quantity}x
+                                    </Text>
+                                </ItemQuantity>
+                                <ItemDetails>
+                                    <Text size={14} weight="600">
+                                        {cartItem.product.name}
+                                    </Text>
+                                    <Text
+                                        size={14}
+                                        color="#666"
+                                        style={{ marginTop: 3 }}
+                                    >
+                                        {formatCurrency(cartItem.product.price)}
+                                    </Text>
+                                </ItemDetails>
+                            </ItemContainer>
+                            <Actions>
+                                <Pressable style={{ marginRight: 24 }}>
+                                    <PlusCircle />
+                                </Pressable>
+                                <Pressable>
+                                    <MinusCircle />
+                                </Pressable>
+                            </Actions>
+                        </Item>
+                    )}
+                />
+            )}
             <Summary>
                 <TotalContainer>
-                    <Text color="#666">Total</Text>
-                    <Text size={20} weight="600">
-                        {formatCurrency(120)}
-                    </Text>
+                    {!isCartEmpty ? (
+                        <>
+                            <Text color="#666">Total</Text>
+                            <Text size={20} weight="600">
+                                {formatCurrency(120)}
+                            </Text>
+                        </>
+                    ) : (
+                        <>
+                            <Text color="#999">Seu carrinho está vazio</Text>
+                        </>
+                    )}
                 </TotalContainer>
-                <Button onPress={() => alert("Confirmar pedido")}>
+                <Button
+                    disabled={isCartEmpty}
+                    onPress={() => alert("Confirmar pedido")}
+                >
                     Confirmar pedido
                 </Button>
             </Summary>
