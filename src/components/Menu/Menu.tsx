@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { FlatList, Pressable } from "react-native";
 import { products } from "../../mocks/products";
 import { Text } from "../Text/Text";
@@ -14,7 +14,11 @@ import { PlusCircle } from "../Icons/PlusCircle";
 import { ProductModal } from "../ProductModal/ProductModal";
 import { Product } from "../../types/Product";
 
-export const Menu = () => {
+type MenuProps = {
+    onAddToCart: (product: Product) => void;
+};
+
+export const Menu: FC<MenuProps> = ({ onAddToCart }) => {
     const [isProductModalVisible, setIsProductModalVisible] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<null | Product>(
         null
@@ -54,7 +58,9 @@ export const Menu = () => {
                                 {formatCurrency(product.price)}
                             </Text>
                         </ProductDetails>
-                        <AddToCartButton onPress={() => alert("AddToCart")}>
+                        <AddToCartButton
+                            onPress={(product) => onAddToCart(product)}
+                        >
                             <PlusCircle />
                         </AddToCartButton>
                     </ProductContainer>

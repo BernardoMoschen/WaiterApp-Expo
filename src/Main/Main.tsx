@@ -52,7 +52,7 @@ export const Main = () => {
                     <Categories />
                 </CategoriesContainer>
                 <MenuContainer>
-                    <Menu  />
+                    <Menu onAddToCart={handleAddToCart} />
                 </MenuContainer>
             </Container>
             <Footer>
