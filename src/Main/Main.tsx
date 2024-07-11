@@ -16,16 +16,7 @@ import { Product } from "../types/Product";
 export const Main = () => {
     const [tableNumber, setTableNumber] = useState("");
     const [isTableModalVisible, setIsTableModalVisible] = useState(false);
-    const [cartItems, setCartItems] = useState<CartItem[]>([
-        // {
-        //     quantity: 2,
-        //     product: products.at(1),
-        // },
-        // {
-        //     quantity: 1,
-        //     product: products.at(0),
-        // },
-    ]);
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
     const handleCancelOrder = () => {
         setTableNumber("");
@@ -37,8 +28,25 @@ export const Main = () => {
     };
 
     const handleAddToCart = (product: Product) => {
-        alert(`handleAddToCart`);
-        // setCartItems((cart) => [...cart, product]);
+        if (!tableNumber) {
+            setIsTableModalVisible(true);
+        }
+        setCartItems((prevState) => {
+            const itemIndex = prevState.findIndex(
+                (carItem) => carItem.product._id === product._id
+            );
+            if (itemIndex < 0) {
+                return prevState.concat({
+                    quantity: 1,
+                    product,
+                });
+            }
+            const oldProduct = prevState.at(itemIndex);
+            return [
+                ...prevState,
+                { ...oldProduct, quantity: oldProduct.quantity + 1 },
+            ];
+        });
     };
 
     return (

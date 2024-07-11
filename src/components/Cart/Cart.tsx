@@ -22,10 +22,10 @@ type Props = {
 };
 
 export const Cart: FC<Props> = ({ cart }) => {
-    const isCartEmpty = cart.length <= 0;
+    const isCartFilled = cart.length > 0;
     return (
         <>
-            {!isCartEmpty && (
+            {isCartFilled && (
                 <FlatList
                     data={cart}
                     keyExtractor={({ product }) => product._id}
@@ -69,10 +69,10 @@ export const Cart: FC<Props> = ({ cart }) => {
             )}
             <Summary>
                 <TotalContainer>
-                    {!isCartEmpty ? (
+                    {isCartFilled ? (
                         <>
                             <Text color="#666">Total</Text>
-                            <Text size={20} weight="600">
+                            <Text size={16} weight="600">
                                 {formatCurrency(120)}
                             </Text>
                         </>
@@ -83,7 +83,7 @@ export const Cart: FC<Props> = ({ cart }) => {
                     )}
                 </TotalContainer>
                 <Button
-                    disabled={isCartEmpty}
+                    disabled={!isCartFilled}
                     onPress={() => alert("Confirmar pedido")}
                 >
                     Confirmar pedido

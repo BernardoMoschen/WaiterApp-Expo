@@ -58,9 +58,7 @@ export const Menu: FC<MenuProps> = ({ onAddToCart }) => {
                                 {formatCurrency(product.price)}
                             </Text>
                         </ProductDetails>
-                        <AddToCartButton
-                            onPress={(product) => onAddToCart(product)}
-                        >
+                        <AddToCartButton onPress={() => onAddToCart(product)}>
                             <PlusCircle />
                         </AddToCartButton>
                     </ProductContainer>
@@ -70,6 +68,7 @@ export const Menu: FC<MenuProps> = ({ onAddToCart }) => {
                 visible={isProductModalVisible}
                 product={selectedProduct}
                 onClose={() => setIsProductModalVisible(false)}
+                onAddToCart={onAddToCart}
             />
         </>
     );

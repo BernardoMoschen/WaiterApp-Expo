@@ -21,10 +21,21 @@ type Props = {
     visible: boolean;
     onClose: () => void;
     product: null | Product;
+    onAddToCart: (product: Product) => void;
 };
 
-export const ProductModal: FC<Props> = ({ visible, onClose, product }) => {
+export const ProductModal: FC<Props> = ({
+    visible,
+    onClose,
+    product,
+    onAddToCart,
+}) => {
     if (!product) return null;
+
+    const handleAddToCart = () => {
+        onAddToCart(product);
+        onClose();
+    };
 
     return (
         <Modal
@@ -91,7 +102,7 @@ export const ProductModal: FC<Props> = ({ visible, onClose, product }) => {
                             {formatCurrency(product.price)}
                         </Text>
                     </PriceContainer>
-                    <Button onPress={() => alert("Adicionar ao pedido")}>
+                    <Button onPress={handleAddToCart}>
                         Adicionar ao pedido
                     </Button>
                 </FooterContainer>
