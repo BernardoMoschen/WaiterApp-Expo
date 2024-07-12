@@ -10,7 +10,6 @@ import {
 import { TableModal } from "../components/TableModal/TableModal";
 import { Cart } from "../components/Cart/Cart";
 import { CartItem } from "../types/CartItem";
-import { products } from "../mocks/products";
 import { Product } from "../types/Product";
 
 export const Main = () => {
@@ -41,11 +40,14 @@ export const Main = () => {
                     product,
                 });
             }
+
+            const newCart = [...prevState];
             const oldProduct = prevState.at(itemIndex);
-            return [
-                ...prevState,
-                { ...oldProduct, quantity: oldProduct.quantity + 1 },
-            ];
+            newCart[itemIndex] = {
+                ...oldProduct,
+                quantity: oldProduct.quantity + 1,
+            };
+            return newCart;
         });
     };
 
