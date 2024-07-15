@@ -17,7 +17,7 @@ export const Main = () => {
     const [isTableModalVisible, setIsTableModalVisible] = useState(false);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-    const handleCancelOrder = () => {
+    const handleResetOrder = () => {
         setTableNumber("");
         setCartItems([]);
     };
@@ -77,7 +77,7 @@ export const Main = () => {
             <Container>
                 <Header
                     selectedTable={tableNumber}
-                    onCancelOrder={handleCancelOrder}
+                    onCancelOrder={handleResetOrder}
                 />
                 <CategoriesContainer>
                     <Categories />
@@ -98,6 +98,7 @@ export const Main = () => {
                             cart={cartItems}
                             onAdd={handleAddToCart}
                             onDecrement={handleDecrementCart}
+                            onConfirmOrder={handleResetOrder}
                         />
                     )}
                 </FooterContainer>

@@ -23,9 +23,15 @@ type Props = {
     cart: CartItem[];
     onAdd: (product: Product) => void;
     onDecrement: (product: Product) => void;
+    onConfirmOrder: () => void;
 };
 
-export const Cart: FC<Props> = ({ cart, onAdd, onDecrement }) => {
+export const Cart: FC<Props> = ({
+    cart,
+    onAdd,
+    onDecrement,
+    onConfirmOrder,
+}) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const isCartFilled = cart.length > 0;
     const total = cart.reduce((acc, cartItem) => {
@@ -41,6 +47,7 @@ export const Cart: FC<Props> = ({ cart, onAdd, onDecrement }) => {
 
     const handleOnOk = () => {
         setIsModalVisible(false);
+        onConfirmOrder();
     };
 
     return (
