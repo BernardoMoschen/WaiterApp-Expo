@@ -16,13 +16,18 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import { PlusCircle } from "../Icons/PlusCircle";
 import { MinusCircle } from "../Icons/MinusCircle";
 import { Button } from "../Button/Button";
+import { Product } from "../../types/Product";
 
 type Props = {
     cart: CartItem[];
+    onAdd: (product: Product) => void;
 };
 
-export const Cart: FC<Props> = ({ cart }) => {
+export const Cart: FC<Props> = ({ cart, onAdd }) => {
     const isCartFilled = cart.length > 0;
+    const total = cart.reduce((acc, cartItem) => {
+        return acc + cartItem.quantity * cartItem.product.price;
+    }, 0);
     return (
         <>
             {isCartFilled && (
@@ -56,7 +61,10 @@ export const Cart: FC<Props> = ({ cart }) => {
                                 </ItemDetails>
                             </ItemContainer>
                             <Actions>
-                                <Pressable style={{ marginRight: 24 }}>
+                                <Pressable
+                                    style={{ marginRight: 24 }}
+                                    onPress={() => onAdd(cartItem.product)}
+                                >
                                     <PlusCircle />
                                 </Pressable>
                                 <Pressable>
@@ -73,7 +81,7 @@ export const Cart: FC<Props> = ({ cart }) => {
                         <>
                             <Text color="#666">Total</Text>
                             <Text size={16} weight="600">
-                                {formatCurrency(120)}
+                                {formatCurrency(total)}
                             </Text>
                         </>
                     ) : (

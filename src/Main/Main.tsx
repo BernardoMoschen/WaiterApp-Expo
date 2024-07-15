@@ -72,7 +72,9 @@ export const Main = () => {
                             Novo Pedido
                         </Button>
                     )}
-                    {tableNumber && <Cart cart={cartItems} />}
+                    {tableNumber && (
+                        <Cart cart={cartItems} onAdd={handleAddToCart} />
+                    )}
                 </FooterContainer>
             </Footer>
             <TableModal
