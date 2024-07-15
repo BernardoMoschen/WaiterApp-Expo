@@ -42,10 +42,30 @@ export const Main = () => {
             }
 
             const newCart = [...prevState];
-            const oldProduct = prevState.at(itemIndex);
+            const item = prevState.at(itemIndex);
             newCart[itemIndex] = {
-                ...oldProduct,
-                quantity: oldProduct.quantity + 1,
+                ...item,
+                quantity: item.quantity + 1,
+            };
+            return newCart;
+        });
+    };
+
+    const handleDecrementCart = (product: Product) => {
+        setCartItems((prevState) => {
+            const itemIndex = prevState.findIndex(
+                (carItem) => carItem.product._id === product._id
+            );
+            const item = prevState[itemIndex];
+            const newCart = [...prevState];
+
+            if (item.quantity === 1) {
+                newCart.splice(itemIndex, 1);
+                return newCart;
+            }
+            newCart[itemIndex] = {
+                ...item,
+                quantity: item.quantity - 1,
             };
             return newCart;
         });
@@ -73,7 +93,11 @@ export const Main = () => {
                         </Button>
                     )}
                     {tableNumber && (
-                        <Cart cart={cartItems} onAdd={handleAddToCart} />
+                        <Cart
+                            cart={cartItems}
+                            onAdd={handleAddToCart}
+                            onDecrement={handleDecrementCart}
+                        />
                     )}
                 </FooterContainer>
             </Footer>

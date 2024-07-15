@@ -21,9 +21,10 @@ import { Product } from "../../types/Product";
 type Props = {
     cart: CartItem[];
     onAdd: (product: Product) => void;
+    onDecrement: (product: Product) => void;
 };
 
-export const Cart: FC<Props> = ({ cart, onAdd }) => {
+export const Cart: FC<Props> = ({ cart, onAdd, onDecrement }) => {
     const isCartFilled = cart.length > 0;
     const total = cart.reduce((acc, cartItem) => {
         return acc + cartItem.quantity * cartItem.product.price;
@@ -67,7 +68,11 @@ export const Cart: FC<Props> = ({ cart, onAdd }) => {
                                 >
                                     <PlusCircle />
                                 </Pressable>
-                                <Pressable>
+                                <Pressable
+                                    onPress={() =>
+                                        onDecrement(cartItem.product)
+                                    }
+                                >
                                     <MinusCircle />
                                 </Pressable>
                             </Actions>
