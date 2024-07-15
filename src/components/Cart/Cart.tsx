@@ -40,9 +40,6 @@ export const Cart: FC<Props> = ({
 
     const handleConfirmOrder = () => {
         setIsModalVisible(true);
-        // return new Promise<void>((resolve, reject) => {
-        // setTimeout(, 1500)
-        // })
     };
 
     const handleOnOk = () => {
