@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Text, Button, Categories, Header, Menu } from "../components";
+import { Button, Categories, Header, Menu } from "../components";
 import {
     CategoriesContainer,
+    CenteredContainer,
     Container,
     Footer,
     FooterContainer,
@@ -11,11 +12,13 @@ import { TableModal } from "../components/TableModal/TableModal";
 import { Cart } from "../components/Cart/Cart";
 import { CartItem } from "../types/CartItem";
 import { Product } from "../types/Product";
+import { ActivityIndicator } from "react-native";
 
 export const Main = () => {
     const [tableNumber, setTableNumber] = useState("");
     const [isTableModalVisible, setIsTableModalVisible] = useState(false);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleResetOrder = () => {
         setTableNumber("");
@@ -79,12 +82,20 @@ export const Main = () => {
                     selectedTable={tableNumber}
                     onCancelOrder={handleResetOrder}
                 />
-                <CategoriesContainer>
-                    <Categories />
-                </CategoriesContainer>
-                <MenuContainer>
-                    <Menu onAddToCart={handleAddToCart} />
-                </MenuContainer>
+                {!isLoading ? (
+                    <>
+                        <CategoriesContainer>
+                            <Categories />
+                        </CategoriesContainer>
+                        <MenuContainer>
+                            <Menu onAddToCart={handleAddToCart} />
+                        </MenuContainer>
+                    </>
+                ) : (
+                    <CenteredContainer>
+                        <ActivityIndicator size="large" color="#D73035" />
+                    </CenteredContainer>
+                )}
             </Container>
             <Footer>
                 <FooterContainer>

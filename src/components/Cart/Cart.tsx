@@ -18,6 +18,7 @@ import { MinusCircle } from "../Icons/MinusCircle";
 import { Button } from "../Button/Button";
 import { Product } from "../../types/Product";
 import { OrderConfirmedModal } from "../OnderConfirmedModal/OrderConfirmedModal";
+import { isLoading } from "expo-font";
 
 type Props = {
     cart: CartItem[];
@@ -32,6 +33,7 @@ export const Cart: FC<Props> = ({
     onDecrement,
     onConfirmOrder,
 }) => {
+    const [isLoading, setIsLoading] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const isCartFilled = cart.length > 0;
     const total = cart.reduce((acc, cartItem) => {
@@ -113,7 +115,11 @@ export const Cart: FC<Props> = ({
                         </>
                     )}
                 </TotalContainer>
-                <Button disabled={!isCartFilled} onPress={handleConfirmOrder}>
+                <Button
+                    isLoading={isLoading}
+                    disabled={!isCartFilled}
+                    onPress={handleConfirmOrder}
+                >
                     Confirmar pedido
                 </Button>
             </Summary>
