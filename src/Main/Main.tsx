@@ -13,12 +13,14 @@ import { Cart } from "../components/Cart/Cart";
 import { CartItem } from "../types/CartItem";
 import { Product } from "../types/Product";
 import { ActivityIndicator } from "react-native";
+import { products as mockProducts } from "../mocks/products";
 
 export const Main = () => {
     const [tableNumber, setTableNumber] = useState("");
     const [isTableModalVisible, setIsTableModalVisible] = useState(false);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const [products] = useState<Product[]>(mockProducts);
 
     const handleResetOrder = () => {
         setTableNumber("");
@@ -88,7 +90,10 @@ export const Main = () => {
                             <Categories />
                         </CategoriesContainer>
                         <MenuContainer>
-                            <Menu onAddToCart={handleAddToCart} />
+                            <Menu
+                                products={products}
+                                onAddToCart={handleAddToCart}
+                            />
                         </MenuContainer>
                     </>
                 ) : (

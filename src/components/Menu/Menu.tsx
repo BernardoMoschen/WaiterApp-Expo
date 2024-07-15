@@ -1,6 +1,5 @@
 import React, { FC, useState } from "react";
-import { FlatList, Pressable } from "react-native";
-import { products } from "../../mocks/products";
+import { FlatList } from "react-native";
 import { Text } from "../Text/Text";
 import {
     Divider,
@@ -16,9 +15,10 @@ import { Product } from "../../types/Product";
 
 type MenuProps = {
     onAddToCart: (product: Product) => void;
+    products: Product[];
 };
 
-export const Menu: FC<MenuProps> = ({ onAddToCart }) => {
+export const Menu: FC<MenuProps> = ({ onAddToCart, products }) => {
     const [isProductModalVisible, setIsProductModalVisible] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<null | Product>(
         null

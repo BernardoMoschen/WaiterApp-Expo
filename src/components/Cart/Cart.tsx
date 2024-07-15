@@ -18,7 +18,6 @@ import { MinusCircle } from "../Icons/MinusCircle";
 import { Button } from "../Button/Button";
 import { Product } from "../../types/Product";
 import { OrderConfirmedModal } from "../OnderConfirmedModal/OrderConfirmedModal";
-import { isLoading } from "expo-font";
 
 type Props = {
     cart: CartItem[];
