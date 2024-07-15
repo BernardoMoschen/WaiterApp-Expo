@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { FlatList, Pressable } from "react-native";
 import { CartItem } from "../../types/CartItem";
 import {
@@ -17,6 +17,7 @@ import { PlusCircle } from "../Icons/PlusCircle";
 import { MinusCircle } from "../Icons/MinusCircle";
 import { Button } from "../Button/Button";
 import { Product } from "../../types/Product";
+import { OrderConfirmedModal } from "../OnderConfirmedModal/OrderConfirmedModal";
 
 type Props = {
     cart: CartItem[];
@@ -25,10 +26,23 @@ type Props = {
 };
 
 export const Cart: FC<Props> = ({ cart, onAdd, onDecrement }) => {
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const isCartFilled = cart.length > 0;
     const total = cart.reduce((acc, cartItem) => {
         return acc + cartItem.quantity * cartItem.product.price;
     }, 0);
+
+    const handleConfirmOrder = () => {
+        setIsModalVisible(true);
+        // return new Promise<void>((resolve, reject) => {
+        // setTimeout(, 1500)
+        // })
+    };
+
+    const handleOnOk = () => {
+        setIsModalVisible(false);
+    };
+
     return (
         <>
             {isCartFilled && (
@@ -95,13 +109,11 @@ export const Cart: FC<Props> = ({ cart, onAdd, onDecrement }) => {
                         </>
                     )}
                 </TotalContainer>
-                <Button
-                    disabled={!isCartFilled}
-                    onPress={() => alert("Confirmar pedido")}
-                >
+                <Button disabled={!isCartFilled} onPress={handleConfirmOrder}>
                     Confirmar pedido
                 </Button>
             </Summary>
+            <OrderConfirmedModal onOk={handleOnOk} visible={isModalVisible} />
         </>
     );
 };
