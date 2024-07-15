@@ -19,6 +19,7 @@ export const Main = () => {
 
     const handleCancelOrder = () => {
         setTableNumber("");
+        setCartItems([]);
     };
 
     const handleSaveTable = (selectedTable: string) => {
