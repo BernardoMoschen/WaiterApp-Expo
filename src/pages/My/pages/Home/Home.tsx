@@ -1,16 +1,19 @@
 import { View } from "react-native";
 import { Container } from "../../components/Container/Container";
+import { Plan } from "./components/Plan/Plan";
+import { Bills } from "./components/Bills/Bills";
+import { HaveFeedback } from "./components/HaveFeedback/HaveFeedback";
 
 export const Home = () => (
     <Container
     // pageName="Home" eventName="home"
     >
-        <View style={{ flexDirection: "column", gap: 2 }}>
+        <View style={{ flex: 1 }}>
             {/* <UsageShowcase /> */}
-            {/* <Plan /> */}
-            {/* <Bills /> */}
+            <Plan />
+            <Bills />
             {/* <Carousel /> */}
-            {/* <HaveFeedback /> */}
+            <HaveFeedback />
         </View>
     </Container>
 );
