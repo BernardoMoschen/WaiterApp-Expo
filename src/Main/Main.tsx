@@ -14,6 +14,7 @@ import { CartItem } from "../types/CartItem";
 import { Product } from "../types/Product";
 import { ActivityIndicator } from "react-native";
 import { products as mockProducts } from "../mocks/products";
+import { Logo } from "../components/app/Logo/Logo";
 
 export const Main = () => {
     const [tableNumber, setTableNumber] = useState("");
@@ -80,10 +81,13 @@ export const Main = () => {
     return (
         <>
             <Container>
-                <Header
-                    selectedTable={tableNumber}
-                    onCancelOrder={handleResetOrder}
-                />
+                <>
+                    <Logo />
+                    <Header
+                        selectedTable={tableNumber}
+                        onCancelOrder={handleResetOrder}
+                    />
+                </>
                 {!isLoading ? (
                     <>
                         <CategoriesContainer>
