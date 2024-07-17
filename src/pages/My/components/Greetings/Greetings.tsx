@@ -100,6 +100,7 @@ export const Greetings: FC<Props> = ({ minimal }) => {
             style={{
                 marginVertical: 2,
                 flexDirection: "row",
+                width: "auto",
             }}
         >
             <Section

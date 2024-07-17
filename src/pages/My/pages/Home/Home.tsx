@@ -3,6 +3,7 @@ import { Container } from "../../components/Container/Container";
 import { Plan } from "./components/Plan/Plan";
 import { Bills } from "./components/Bills/Bills";
 import { HaveFeedback } from "./components/HaveFeedback/HaveFeedback";
+import { NotFound } from "../../../NotFound/NotFound";
 
 export const Home = () => (
     <Container
@@ -14,6 +15,7 @@ export const Home = () => (
             <Bills />
             {/* <Carousel /> */}
             <HaveFeedback />
+            {/* <NotFound /> */}
         </View>
     </Container>
 );
