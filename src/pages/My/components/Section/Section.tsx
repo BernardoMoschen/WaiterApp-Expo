@@ -19,8 +19,8 @@ export const Section: FC<Props> = ({ title, children, link }) => {
                 padding: 16,
                 borderRadius: 16,
                 gap: 1,
-                flex: 1,
-                backgroundColor: "theme.white",
+                height: "auto",
+                backgroundColor: "white",
                 flexDirection: "column",
             }}
         >
