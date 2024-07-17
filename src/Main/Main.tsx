@@ -3,6 +3,7 @@ import { Container } from "./styles";
 import { Logo } from "../components/Logo/Logo";
 import { Home } from "../pages/My/pages/Home/Home";
 import { SignIn } from "../pages/SignIn/SignIn";
+import { ForgotPassword } from "../pages/SignIn/ForgotPassword/ForgotPassword";
 
 export const Main = () => {
     return (
@@ -10,7 +11,8 @@ export const Main = () => {
             <Container>
                 <Logo />
                 {/* <Home /> */}
-                <SignIn />
+                {/* <SignIn /> */}
+                <ForgotPassword />
             </Container>
             {/* <Footer>
                 <FooterContainer></FooterContainer>
