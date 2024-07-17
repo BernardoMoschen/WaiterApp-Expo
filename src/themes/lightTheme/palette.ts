@@ -173,5 +173,5 @@ const palette: Partial<MD3Colors> = {
 
 export const colors = {
     ...palette,
-    ...theme,
+    // ...theme,
 };

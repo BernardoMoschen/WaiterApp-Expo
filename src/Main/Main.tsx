@@ -1,18 +1,20 @@
 import React from "react";
-import { Container, Footer, FooterContainer } from "./styles";
+import { Container } from "./styles";
 import { Logo } from "../components/Logo/Logo";
 import { Home } from "../pages/My/pages/Home/Home";
+import { SignIn } from "../pages/SignIn/SignIn";
 
 export const Main = () => {
     return (
         <>
             <Container>
                 <Logo />
-                <Home />
+                {/* <Home /> */}
+                <SignIn />
             </Container>
-            <Footer>
+            {/* <Footer>
                 <FooterContainer></FooterContainer>
-            </Footer>
+            </Footer> */}
         </>
     );
 };
