@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Footer, FooterContainer } from "./styles";
-import { Logo } from "../components/app/Logo/Logo";
+import { Logo } from "../components/Logo/Logo";
 import { Greetings } from "../components/app/Greetings/Greetings";
 import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
 
