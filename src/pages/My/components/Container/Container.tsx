@@ -10,6 +10,7 @@ type Props = {
 
 const SystemContainer = styled.View`
     padding: 0 14px;
+    flex: 1;
 `;
 
 export const Container: FC<Props> = ({
