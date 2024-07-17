@@ -1,42 +1,41 @@
 import { FC } from "react";
-import styled from "styled-components/native";
-
-type ChipVariant = "filled" | "outlined" | "icon";
+import { Chip, ChipProps, useTheme } from "react-native-paper";
+import { capitalize } from "lodash";
 
 type Props = {
-    variant: ChipVariant;
+    variant: ChipProps["mode"];
     status: "active" | "suspended" | "terminated" | "pendingActive";
 };
 
-const Chip = styled.View`
-    padding: 0px 5px;
-    height: 24px;
-    background-color: transparent;
-    border: 1px solid green;
-    border-radius: 12px;
-    align-items: center;
-    justify-content: center;
-`;
-
-const ChipText = styled.Text`
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-    color: green;
-`;
-
-export const SubscriptionStatusChip: FC<Props> = ({ status }) => (
-    <Chip
-    // type={
-    //     status === "active"
-    //         ? "success"
-    //         : status === "suspended"
-    //         ? "warning"
-    //         : "error"
-    // }
-    // label={capitalize(status)}
-    // variant={variant}
-    >
-        <ChipText>{status}</ChipText>
-    </Chip>
-);
+export const SubscriptionStatusChip: FC<Props> = ({ status }) => {
+    const theme = useTheme() as any;
+    return (
+        <Chip
+            mode="flat"
+            compact
+            selectedColor={
+                status === "active"
+                    ? theme.colors.success.base
+                    : status === "suspended"
+                    ? theme.colors.warning.base
+                    : theme.colors.error.base
+            }
+            style={{
+                paddingVertical: 0,
+                paddingHorizontal: 5,
+                height: "auto",
+                borderWidth: 1,
+                borderRadius: 16,
+            }}
+            textStyle={{
+                fontWeight: 600,
+                marginVertical: 0,
+                marginHorizontal: 0,
+                fontSize: 14,
+                lineHeight: 20,
+            }}
+        >
+            {capitalize(status)}
+        </Chip>
+    );
+};

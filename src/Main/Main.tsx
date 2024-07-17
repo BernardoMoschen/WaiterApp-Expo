@@ -17,11 +17,6 @@ export const Main = () => {
             <Footer>
                 <FooterContainer></FooterContainer>
             </Footer>
-            {/* <TableModal
-                visible={isTableModalVisible}
-                onSave={handleSaveTable}
-                onClose={() => setIsTableMordalVisible(false)}
-            /> */}
         </>
     );
 };

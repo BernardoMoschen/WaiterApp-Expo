@@ -80,7 +80,7 @@ export const Greetings: FC<Props> = ({ minimal }) => {
                 )}
                 <SubscriptionStatusChip
                     status={status as any}
-                    variant={minimal ? "icon" : "outlined"}
+                    variant={minimal ? "outlined" : "outlined"}
                 />
             </View>
         ) : null;

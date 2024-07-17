@@ -4,7 +4,7 @@ import { Plan } from "./components/Plan/Plan";
 import { Bills } from "./components/Bills/Bills";
 import { HaveFeedback } from "./components/HaveFeedback/HaveFeedback";
 import { NotFound } from "../../../NotFound/NotFound";
-
+import { } from'react-native-paper'
 export const Home = () => (
     <Container
     // pageName="Home" eventName="home"
