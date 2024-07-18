@@ -1,78 +1,56 @@
 import { FC, isValidElement, ReactNode } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import { Card, Text } from "react-native-paper";
+import { SysLink } from "../../../../components/Link/Link";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 type Props = {
-    title: ReactNode | string;
-    children: ReactNode;
+    title: string;
+    content: ReactNode;
     link?: {
         to: string;
         title: string;
     };
 };
 
-export const Section: FC<Props> = ({ title, children, link }) => {
-    // const navigate = useNavigate();
-
+export const Section: FC<Props> = ({ title, content, link }) => {
     return (
-        <View
+        <Card
             style={{
+                flex: 1,
+                backgroundColor: "#FFFFFF",
                 padding: 16,
-                borderRadius: 16,
-                gap: 1,
-                height: "auto",
-                backgroundColor: "white",
-                flexDirection: "column",
+                marginBottom: 8,
             }}
         >
             <View
                 style={{
+                    flexDirection: "row",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    flexDirection: "row",
                 }}
             >
-                {isValidElement(title) ? (
-                    title
-                ) : (
-                    <Text
-                    // variant="h7"
-                    // color="theme.secondary.main.base"
-                    // fontWeight="medium"
-                    >
-                        {title}
-                    </Text>
-                )}
+                <Text variant="titleMedium">Title</Text>
                 {link && (
-                    <View
-                        style={{
-                            gap: 1,
-                            cursor: "pointer",
-                        }}
-                        // onClick={() => navigate(link.to)}
-                    >
-                        <Text
-                            style={{
-                                fontWeight: "medium",
-                                textTransform: "none",
-                                color: "blue",
-                            }}
-                            // variant="p2"
-                        >
+                    <SysLink to={{ screen: link.to }}>
+                        <>
                             {link.title}
-                        </Text>
-                        {/* <View
-                            style={{
-                                "> svg": {
-                                    color: "theme.secondary.main.base",
-                                },
-                            }}
-                        >
-                            <ArrowForwardIosRounded sx={{ width: 14 }} />
-                        </View> */}
-                    </View>
+                            <MaterialCommunityIcons
+                                name="chevron-right"
+                                color="#123038"
+                                size={16}
+                            />
+                        </>
+                    </SysLink>
                 )}
             </View>
-            <View>{children}</View>
-        </View>
+            <Card.Content
+                style={{
+                    paddingHorizontal: 0,
+                }}
+            >
+                {content}
+            </Card.Content>
+        </Card>
     );
 };

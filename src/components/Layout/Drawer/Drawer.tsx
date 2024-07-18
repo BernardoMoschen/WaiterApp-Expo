@@ -11,6 +11,7 @@ export const DrawerRouter = () => {
     return (
         <Drawer.Navigator drawerContent={() => <DrawerContent />}>
             <Drawer.Screen name="Home" component={Home} />
+            <Drawer.Screen name="Profile" component={Home} />
         </Drawer.Navigator>
     );
 };

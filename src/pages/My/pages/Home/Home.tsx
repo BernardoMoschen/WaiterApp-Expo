@@ -6,9 +6,7 @@ import { HaveFeedback } from "./components/HaveFeedback/HaveFeedback";
 import { NotFound } from "../../../NotFound/NotFound";
 import { } from'react-native-paper'
 export const Home = () => (
-    <Container
-    // pageName="Home" eventName="home"
-    >
+    <Container>
         <View style={{ flex: 1 }}>
             {/* <UsageShowcase /> */}
             <Plan />
