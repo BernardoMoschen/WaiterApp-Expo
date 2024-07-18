@@ -1,51 +1,69 @@
 import { Pressable, Text, View } from "react-native";
+import { Button, Card } from "react-native-paper";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export const HaveFeedback = () => (
-    <View
+    <Card
+        elevation={0}
         style={{
-            padding: 16,
-            justifyContent: "space-between",
-            alignItems: "center",
-            backgroundColor: "theme.white",
+            width: "100%",
+            backgroundColor: "#FFFFFF",
             borderRadius: 16,
-            flexDirection: "row",
         }}
     >
-        <>
+        <Card.Content
+            style={{
+                flexDirection: "row",
+                alignItems: "center",
+                width: "auto",
+                display: "flex",
+                justifyContent: "space-between",
+            }}
+        >
             <Text
-            // variant="p2"
-            // color="theme.neutral.900"
+                style={{
+                    fontSize: 16,
+                    fontWeight: 400,
+                    color: "#111827",
+                }}
             >
                 Have feedback?
             </Text>
-        </>
-        <View>
-            {/* <Link to="/my/feedback"> */}
-            <Pressable
-                // size="small"
+            <Button
+                mode="contained"
                 style={{
+                    backgroundColor: "#BECDD2",
                     borderRadius: 24,
-                    width: "auto",
-                    height: "auto",
-                    backgroundColor: "blue",
-                    // backgroundColor: "theme.secondary.main.50",
-                    paddingHorizontal: 16,
-                    paddingVertical: 8,
                 }}
-                // endIcon={<ArrowForwardRounded />}
+                onPress={() => console.log("Let us know")}
             >
                 <Text
-                    // variant="p2"
-                    // color="theme.secondary.main.base"
                     style={{
-                        fontWeight: "medium",
-                        textTransform: "none",
+                        fontSize: 16,
+                        fontWeight: 500,
+                        color: "#123038",
                     }}
                 >
                     Let us know
                 </Text>
-            </Pressable>
-            {/* <Link/> */}
-        </View>
-    </View>
+                <MaterialCommunityIcons
+                    name="arrow-right"
+                    size={16}
+                    color="#123038"
+                />
+            </Button>
+        </Card.Content>
+    </Card>
+
+    //         <Pressable
+    //             // size="small"
+    //             style={{
+    //                 borderRadius: 24,
+    //                 width: "auto",
+    //                 height: "auto",
+    //                 backgroundColor: "blue",
+    //                 // backgroundColor: "theme.secondary.main.50",
+    //
+    //             }}
+    //             // endIcon={<ArrowForwardRounded />}
 );

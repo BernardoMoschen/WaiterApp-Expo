@@ -4,29 +4,24 @@ import { Greetings } from "../Greetings/Greetings";
 
 type Props = {
     children: ReactNode;
-    //   eventName: EventPageView
 };
-// & NavbarProps;
 
-const SystemContainer = styled.View`
-    padding: 0 14px;
+const SystemContainer = styled.ScrollView`
     flex: 1;
+    padding: 0 14px;
+    background-color: #f3f4f6;
 `;
 
-export const Container: FC<Props> = ({
-    children,
-    // backButton,
-    // pageName,
-    //   eventName,
-}) => {
-    //   sendPageViewEvent(eventName)
-    return (
-        <>
-            {/* <Navbar backButton={backButton} pageName={pageName} /> */}
-            <SystemContainer>
-                <Greetings />
-                {children}
-            </SystemContainer>
-        </>
-    );
-};
+export const Container: FC<Props> = ({ children }) => (
+    <>
+        <SystemContainer
+            contentContainerStyle={{
+                gap: 16,
+                alignItems: "center",
+            }}
+        >
+            <Greetings />
+            {children}
+        </SystemContainer>
+    </>
+);

@@ -16,13 +16,14 @@ type Props = {
 export const Section: FC<Props> = ({ title, content, link }) => {
     return (
         <Card
+            elevation={0}
             style={{
-                flex: 1,
+                width: "100%",
                 backgroundColor: "#FFFFFF",
-                padding: 16,
+                borderRadius: 16,
             }}
         >
-            <View
+            <Card.Content
                 style={{
                     flexDirection: "row",
                     justifyContent: "space-between",
@@ -51,11 +52,10 @@ export const Section: FC<Props> = ({ title, content, link }) => {
                         </>
                     </SysLink>
                 )}
-            </View>
+            </Card.Content>
             <Card.Content
                 style={{
                     marginTop: 8,
-                    paddingHorizontal: 0,
                 }}
             >
                 {content}

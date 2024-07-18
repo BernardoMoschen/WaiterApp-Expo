@@ -92,6 +92,8 @@ export const SignIn = () => {
                                 label={inputs.password.label}
                                 error={!!errors.password || incorrect}
                                 helperText={errors.password?.message ?? " "}
+                                secureTextEntry
+                                right={<TextInput.Icon icon="eye" />}
                             />
                         )}
                     />

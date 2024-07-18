@@ -13,19 +13,45 @@ export const Bills = () => {
         <Section
             title="My bills"
             link={{ title: "Details", to: "/my/billing" }}
-        >
-            <Text>Latest invoice</Text>
-            <Text
-                //   variant='h5'
-                //   color='theme.shades.800'
-                style={{ fontWeight: "400" }}
-            >
-                $
-                {/* {customer.billing.invoices.length
-                     ? Number(customer.billing.invoices[0]?.dueAmount).toFixed(2)
-                    : "0.00"} */}
-                {mockBill}
-            </Text>
-        </Section>
+            content={
+                <>
+                    <Text
+                        style={{
+                            fontWeight: "400",
+                            fontSize: 14,
+                            color: "#232323",
+                        }}
+                    >
+                        Total amount due
+                    </Text>
+                    <Text
+                        style={{
+                            fontWeight: "600",
+                            fontSize: 24,
+                            color: "#232323",
+                        }}
+                    >
+                        ${mockBill}
+                    </Text>
+                    <Text
+                        style={{
+                            fontWeight: "400",
+                            fontSize: 14,
+                            color: "#232323",
+                        }}
+                    >
+                        This is due by
+                        <Text
+                            style={{
+                                fontWeight: "600",
+                            }}
+                        >
+                            {" "}
+                            June 05, 2024
+                        </Text>
+                    </Text>
+                </>
+            }
+        />
     );
 };
