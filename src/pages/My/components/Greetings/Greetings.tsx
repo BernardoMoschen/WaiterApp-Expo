@@ -18,7 +18,7 @@ export const Greetings: FC = () => {
                 price: 125,
                 fees: 25,
             },
-            number: "1234567890",
+            number: "+1 (441) 555-5551",
             simtype: "ESIM",
             // "active" | "suspended" | "terminated" | "pendingActive"
             status: "active",
@@ -41,7 +41,16 @@ export const Greetings: FC = () => {
                     flexDirection: "row",
                 }}
             >
-                <Text>{number}</Text>
+                <Text
+                    style={{
+                        fontSize: 16,
+                        fontWeight: 400,
+                        textAlign: "left",
+                        color: "#4B5563",
+                    }}
+                >
+                    {number}
+                </Text>
                 <SubscriptionStatusChip
                     status={status as any}
                     variant={"outlined"}

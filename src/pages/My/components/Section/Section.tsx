@@ -20,7 +20,6 @@ export const Section: FC<Props> = ({ title, content, link }) => {
                 flex: 1,
                 backgroundColor: "#FFFFFF",
                 padding: 16,
-                marginBottom: 8,
             }}
         >
             <View
@@ -30,7 +29,16 @@ export const Section: FC<Props> = ({ title, content, link }) => {
                     alignItems: "center",
                 }}
             >
-                <Text variant="titleMedium">Title</Text>
+                <Text
+                    style={{
+                        fontSize: 20,
+                        fontWeight: 700,
+                        textAlign: "left",
+                        color: "#111827",
+                    }}
+                >
+                    {title}
+                </Text>
                 {link && (
                     <SysLink to={{ screen: link.to }}>
                         <>
@@ -46,6 +54,7 @@ export const Section: FC<Props> = ({ title, content, link }) => {
             </View>
             <Card.Content
                 style={{
+                    marginTop: 8,
                     paddingHorizontal: 0,
                 }}
             >
