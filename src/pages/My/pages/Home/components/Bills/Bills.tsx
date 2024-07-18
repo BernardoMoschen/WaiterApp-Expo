@@ -18,7 +18,7 @@ export const Bills = () => {
             <Text
                 //   variant='h5'
                 //   color='theme.shades.800'
-                style={{ ontWeight: "400" }}
+                style={{ fontWeight: "400" }}
             >
                 $
                 {/* {customer.billing.invoices.length
