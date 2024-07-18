@@ -11,8 +11,8 @@ export const Main = () => {
             <Container>
                 <Logo />
                 {/* <Home /> */}
-                {/* <SignIn /> */}
-                <ForgotPassword />
+                <SignIn />
+                {/* <ForgotPassword /> */}
             </Container>
             {/* <Footer>
                 <FooterContainer></FooterContainer>

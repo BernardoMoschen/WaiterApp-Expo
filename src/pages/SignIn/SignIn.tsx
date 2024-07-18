@@ -3,6 +3,34 @@ import { View } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
 import { useFormSignIn } from "./hooks";
 import { Controller } from "react-hook-form";
+import { SysContainer } from "../../components/SysContainer/SysContainer";
+import { SysTextInput } from "../../components/SysTextInput/SysTextInput";
+
+export const inputs = {
+    email: {
+        label: "Email",
+        validation: {
+            required: {
+                value: true,
+                message: "Email is required",
+            },
+            pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message:
+                    "Your email needs to be in the format: yourname@domain.com",
+            },
+        },
+    },
+    password: {
+        label: "Password",
+        validation: {
+            required: {
+                value: true,
+                message: "Password is required",
+            },
+        },
+    },
+};
 
 export const SignIn = () => {
     const {
@@ -18,10 +46,11 @@ export const SignIn = () => {
         },
     } = useFormSignIn();
     return (
-        <View
+        <SysContainer
+            behavior="padding"
             style={{
                 flex: 3,
-                margin: 24,
+                // margin: 24,
             }}
         >
             <View
@@ -47,10 +76,11 @@ export const SignIn = () => {
                         name="email"
                         control={control}
                         render={({ field }) => (
-                            <TextInput
+                            <SysTextInput
                                 {...field}
-                                style={{ marginBottom: 24 }}
                                 label="Email"
+                                error={!!errors.email || incorrect}
+                                helperText={errors.email?.message ?? " "}
                             />
                         )}
                     />
@@ -58,10 +88,11 @@ export const SignIn = () => {
                         name="password"
                         control={control}
                         render={({ field }) => (
-                            <TextInput
+                            <SysTextInput
                                 {...field}
-                                style={{ marginBottom: 24 }}
-                                label="Password"
+                                label={inputs.password.label}
+                                error={!!errors.password || incorrect}
+                                helperText={errors.password?.message ?? " "}
                             />
                         )}
                     />
@@ -96,6 +127,6 @@ export const SignIn = () => {
                 </Text>
                 <Button mode="contained">Sign up now</Button>
             </View>
-        </View>
+        </SysContainer>
     );
 };
