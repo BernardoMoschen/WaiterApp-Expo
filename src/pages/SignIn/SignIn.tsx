@@ -35,7 +35,6 @@ export const inputs = {
 export const SignIn = () => {
     const {
         form: {
-            register,
             control,
             formState: { errors, isValid },
         },
