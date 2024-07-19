@@ -12,7 +12,7 @@ export const Bills = () => {
     return (
         <Section
             title="My bills"
-            link={{ title: "Details", to: "/my/billing" }}
+            link={{ title: "Details", to: "Billing" }}
             content={
                 <>
                     <Text

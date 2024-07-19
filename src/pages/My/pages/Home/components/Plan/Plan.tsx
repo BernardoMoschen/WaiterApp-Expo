@@ -13,7 +13,7 @@ export const Plan = () => {
     return (
         <Section
             title="My plan"
-            link={{ title: "Manage", to: "/my/services" }}
+            link={{ title: "Manage", to: "Services" }}
             content={
                 <Text
                     style={{
@@ -25,6 +25,6 @@ export const Plan = () => {
                     {bundle.name.replace(" PROMO", "")}
                 </Text>
             }
-        ></Section>
+        />
     );
 };

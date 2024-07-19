@@ -1,6 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
-import { DrawerItem, DrawerContentScrollView } from "@react-navigation/drawer";
+import {
+    DrawerItem,
+    DrawerContentScrollView,
+    DrawerContentComponentProps,
+} from "@react-navigation/drawer";
 import {
     Avatar,
     Title,
@@ -13,9 +17,9 @@ import {
 } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export function DrawerContent(props) {
+export const DrawerContent: FC<DrawerContentComponentProps> = (params) => {
     return (
-        <DrawerContentScrollView {...props}>
+        <DrawerContentScrollView {...params}>
             <View style={styles.drawerContent}>
                 <View style={styles.userInfoSection}>
                     <Avatar.Image
@@ -55,7 +59,9 @@ export function DrawerContent(props) {
                             />
                         )}
                         label="Profile"
-                        onPress={() => {}}
+                        onPress={() => {
+                            params.navigation.navigate("Profile");
+                        }}
                     />
                     <DrawerItem
                         icon={({ color, size }) => (
@@ -66,7 +72,9 @@ export function DrawerContent(props) {
                             />
                         )}
                         label="Home"
-                        onPress={() => {}}
+                        onPress={() => {
+                            params.navigation.navigate("Home");
+                        }}
                     />
                     <DrawerItem
                         icon={({ color, size }) => (
@@ -77,7 +85,9 @@ export function DrawerContent(props) {
                             />
                         )}
                         label="Services"
-                        onPress={() => {}}
+                        onPress={() => {
+                            params.navigation.navigate("Services");
+                        }}
                     />
                     <DrawerItem
                         icon={({ color, size }) => (
@@ -88,7 +98,9 @@ export function DrawerContent(props) {
                             />
                         )}
                         label="Billing"
-                        onPress={() => {}}
+                        onPress={() => {
+                            params.navigation.navigate("Billing");
+                        }}
                     />
                     <DrawerItem
                         icon={({ color, size }) => (
@@ -99,7 +111,9 @@ export function DrawerContent(props) {
                             />
                         )}
                         label="Support"
-                        onPress={() => {}}
+                        onPress={() => {
+                            params.navigation.navigate("Feedback");
+                        }}
                     />
                 </Drawer.Section>
                 <Drawer.Section title="Preferences">
@@ -115,7 +129,7 @@ export function DrawerContent(props) {
             </View>
         </DrawerContentScrollView>
     );
-}
+};
 
 const styles = StyleSheet.create({
     drawerContent: {
