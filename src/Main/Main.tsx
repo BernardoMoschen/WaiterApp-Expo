@@ -25,20 +25,15 @@ export const Main = () => {
     const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            try {
-                const res = await axios.get(
-                    "http://172.17.0.1:3001/categories"
-                    // "http://179.147.143.41:3001/categories"
-                );
-                setCategories(res.data);
-                setIsLoading(false);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
+        setIsLoading(true);
+        Promise.all([
+            axios.get("http://172.17.0.1:3001/categories"),
+            axios.get("http://172.17.0.1:3001/products"),
+        ]).then(([categoriesRes, productsRes]) => {
+            setCategories(categoriesRes.data);
+            setProducts(productsRes.data);
+            setIsLoading(false);
+        });
     }, []);
 
     const handleResetOrder = () => {
