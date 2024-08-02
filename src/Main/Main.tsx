@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Categories, Header, Menu } from "../components";
+import { Button, Categories, Header, Menu, Text } from "../components";
 import {
     CategoriesContainer,
     CenteredContainer,
@@ -21,6 +21,7 @@ export const Main = () => {
     const [isTableModalVisible, setIsTableModalVisible] = useState(false);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingProducts, setIsLoadingProducts] = useState(false);
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
 
@@ -36,10 +37,13 @@ export const Main = () => {
     }, []);
 
     const handleSelectCategory = async (categoryId: string) => {
+        setIsLoadingProducts(true);
         const route = !categoryId
             ? `/products`
             : `/categories/products/${categoryId}`;
+        await new Promise((resolve) => setTimeout(resolve, 1500));
         const { data } = await api.get(route);
+        setIsLoadingProducts(false);
         setProducts(data);
     };
 
@@ -105,7 +109,11 @@ export const Main = () => {
                     selectedTable={tableNumber}
                     onCancelOrder={handleResetOrder}
                 />
-                {!isLoading ? (
+                {isLoading ? (
+                    <CenteredContainer>
+                        <ActivityIndicator size="large" color="#D73035" />
+                    </CenteredContainer>
+                ) : (
                     <>
                         <CategoriesContainer>
                             <Categories
@@ -113,17 +121,30 @@ export const Main = () => {
                                 onSelectCategory={handleSelectCategory}
                             />
                         </CategoriesContainer>
-                        <MenuContainer>
-                            <Menu
-                                products={products}
-                                onAddToCart={handleAddToCart}
-                            />
-                        </MenuContainer>
+                        {isLoadingProducts ? (
+                            <CenteredContainer>
+                                <ActivityIndicator
+                                    size="large"
+                                    color="#D73035"
+                                />
+                            </CenteredContainer>
+                        ) : (
+                            <>
+                                {products.length > 0 ? (
+                                    <MenuContainer>
+                                        <Menu
+                                            products={products}
+                                            onAddToCart={handleAddToCart}
+                                        />
+                                    </MenuContainer>
+                                ) : (
+                                    <CenteredContainer>
+                                        <Text>Nenhum produto encontrado.</Text>
+                                    </CenteredContainer>
+                                )}
+                            </>
+                        )}
                     </>
-                ) : (
-                    <CenteredContainer>
-                        <ActivityIndicator size="large" color="#D73035" />
-                    </CenteredContainer>
                 )}
             </Container>
             <Footer>
