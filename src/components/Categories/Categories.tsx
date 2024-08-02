@@ -15,7 +15,7 @@ export const Categories: FC<Props> = ({ categories, onSelectCategory }) => {
     const handleSelectCategory = (categoryId: string) => {
         const category = selectedCategory === categoryId ? "" : categoryId;
         setSelectedCategory(category);
-        onSelectCategory(categoryId);
+        onSelectCategory(category);
     };
 
     return (

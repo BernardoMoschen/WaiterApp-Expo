@@ -36,7 +36,11 @@ export const Main = () => {
     }, []);
 
     const handleSelectCategory = async (categoryId: string) => {
-        const { data } = await api.get(`/categories/products/${categoryId}`);
+        alert(`${!categoryId}`);
+        const route = !categoryId
+            ? `/products`
+            : `/categories/products/${categoryId}`;
+        const { data } = await api.get(route);
         setProducts(data);
     };
 
