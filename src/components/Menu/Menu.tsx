@@ -12,6 +12,7 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import { PlusCircle } from "../Icons/PlusCircle";
 import { ProductModal } from "../ProductModal/ProductModal";
 import { Product } from "../../types/Product";
+import { apiEndpoint } from "../../utils/api";
 
 type MenuProps = {
     onAddToCart: (product: Product) => void;
@@ -40,10 +41,9 @@ export const Menu: FC<MenuProps> = ({ onAddToCart, products }) => {
                 renderItem={({ item: product }) => (
                     <ProductContainer onPress={() => handleOpenModal(product)}>
                         <Image
-                            source={require("../../mocks/mockImage.png")}
-                            // source={{
-                            //     uri: `http://localhost:3001/upload/${product.imagePath}`,
-                            // }}
+                            source={{
+                                uri: `${apiEndpoint}/uploads/${product.imagePath}`,
+                            }}
                         />
                         <ProductDetails>
                             <Text weight="600">{product.name}</Text>

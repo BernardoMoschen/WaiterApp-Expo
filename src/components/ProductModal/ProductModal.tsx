@@ -16,6 +16,7 @@ import {
 import { Close } from "../Icons/Close";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { Button } from "../Button/Button";
+import { apiEndpoint } from "../../utils/api";
 
 type Props = {
     visible: boolean;
@@ -45,10 +46,9 @@ export const ProductModal: FC<Props> = ({
             onRequestClose={onClose}
         >
             <Image
-                source={require("../../mocks/mockImageXL.png")}
-                // source={{
-                //     uri: `http://localhost:3001/upload/${product.imagePath}`,
-                // }}
+                source={{
+                    uri: `${apiEndpoint}/uploads/${product.imagePath}`,
+                }}
             >
                 <CloseButton onPress={onClose}>
                     <Close />
