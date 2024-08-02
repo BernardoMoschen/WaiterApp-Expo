@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Categories, Header, Menu } from "../components";
 import {
     CategoriesContainer,
@@ -13,14 +13,33 @@ import { Cart } from "../components/Cart/Cart";
 import { CartItem } from "../types/CartItem";
 import { Product } from "../types/Product";
 import { ActivityIndicator } from "react-native";
-import { products as mockProducts } from "../mocks/products";
+import { Category } from "../types/Category";
+import axios from "axios";
 
 export const Main = () => {
     const [tableNumber, setTableNumber] = useState("");
     const [isTableModalVisible, setIsTableModalVisible] = useState(false);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [products] = useState<Product[]>(mockProducts);
+    const [products, setProducts] = useState<Product[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            try {
+                const res = await axios.get(
+                    "http://172.17.0.1:3001/categories"
+                    // "http://179.147.143.41:3001/categories"
+                );
+                setCategories(res.data);
+                setIsLoading(false);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, []);
 
     const handleResetOrder = () => {
         setTableNumber("");
@@ -87,7 +106,7 @@ export const Main = () => {
                 {!isLoading ? (
                     <>
                         <CategoriesContainer>
-                            <Categories />
+                            <Categories categories={categories} />
                         </CategoriesContainer>
                         <MenuContainer>
                             <Menu
