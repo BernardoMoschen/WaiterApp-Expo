@@ -14,7 +14,7 @@ import { CartItem } from "../types/CartItem";
 import { Product } from "../types/Product";
 import { ActivityIndicator } from "react-native";
 import { Category } from "../types/Category";
-import axios from "axios";
+import { api } from "../utils/api";
 
 export const Main = () => {
     const [tableNumber, setTableNumber] = useState("");
@@ -26,14 +26,13 @@ export const Main = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        Promise.all([
-            axios.get("http://172.17.0.1:3001/categories"),
-            axios.get("http://172.17.0.1:3001/products"),
-        ]).then(([categoriesRes, productsRes]) => {
-            setCategories(categoriesRes.data);
-            setProducts(productsRes.data);
-            setIsLoading(false);
-        });
+        Promise.all([api.get("/categories"), api.get("/products")]).then(
+            ([categoriesRes, productsRes]) => {
+                setCategories(categoriesRes.data);
+                setProducts(productsRes.data);
+                setIsLoading(false);
+            }
+        );
     }, []);
 
     const handleResetOrder = () => {
