@@ -6,14 +6,16 @@ import { Category } from "../../types/Category";
 
 type Props = {
     categories: Category[];
+    onSelectCategory: (categoryId: string) => void;
 };
 
-export const Categories: FC<Props> = ({ categories }) => {
+export const Categories: FC<Props> = ({ categories, onSelectCategory }) => {
     const [selectedCategory, setSelectedCategory] = useState("");
 
     const handleSelectCategory = (categoryId: string) => {
         const category = selectedCategory === categoryId ? "" : categoryId;
         setSelectedCategory(category);
+        onSelectCategory(categoryId);
     };
 
     return (

@@ -35,6 +35,11 @@ export const Main = () => {
         );
     }, []);
 
+    const handleSelectCategory = async (categoryId: string) => {
+        const { data } = await api.get(`/categories/products/${categoryId}`);
+        setProducts(data);
+    };
+
     const handleResetOrder = () => {
         setTableNumber("");
         setCartItems([]);
@@ -100,7 +105,10 @@ export const Main = () => {
                 {!isLoading ? (
                     <>
                         <CategoriesContainer>
-                            <Categories categories={categories} />
+                            <Categories
+                                categories={categories}
+                                onSelectCategory={handleSelectCategory}
+                            />
                         </CategoriesContainer>
                         <MenuContainer>
                             <Menu
