@@ -36,7 +36,6 @@ export const Main = () => {
     }, []);
 
     const handleSelectCategory = async (categoryId: string) => {
-        alert(`${!categoryId}`);
         const route = !categoryId
             ? `/products`
             : `/categories/products/${categoryId}`;
