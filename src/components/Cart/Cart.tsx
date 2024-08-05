@@ -18,9 +18,11 @@ import { MinusCircle } from "../Icons/MinusCircle";
 import { Button } from "../Button/Button";
 import { Product } from "../../types/Product";
 import { OrderConfirmedModal } from "../OnderConfirmedModal/OrderConfirmedModal";
+import { api } from "../../utils/api";
 
 type Props = {
     cart: CartItem[];
+    selectedTable: string;
     onAdd: (product: Product) => void;
     onDecrement: (product: Product) => void;
     onConfirmOrder: () => void;
@@ -28,6 +30,7 @@ type Props = {
 
 export const Cart: FC<Props> = ({
     cart,
+    selectedTable,
     onAdd,
     onDecrement,
     onConfirmOrder,
@@ -39,7 +42,17 @@ export const Cart: FC<Props> = ({
         return acc + cartItem.quantity * cartItem.product.price;
     }, 0);
 
-    const handleConfirmOrder = () => {
+    const handleConfirmOrder = async () => {
+        setIsLoading(true);
+        const payload = {
+            table: selectedTable,
+            products: cart.map((cartItem) => ({
+                product: cartItem.product._id,
+                quantity: cartItem.quantity,
+            })),
+        };
+        await api.post("/order", payload);
+        setIsLoading(false);
         setIsModalVisible(true);
     };
 

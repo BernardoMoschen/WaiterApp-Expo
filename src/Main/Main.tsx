@@ -157,6 +157,7 @@ export const Main = () => {
                     {tableNumber && (
                         <Cart
                             cart={cartItems}
+                            selectedTable={tableNumber}
                             onAdd={handleAddToCart}
                             onDecrement={handleDecrementCart}
                             onConfirmOrder={handleResetOrder}
